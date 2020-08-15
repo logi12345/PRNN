@@ -45,7 +45,7 @@ def pca(dataset):
 
     # Project data onto space spanning first two principle components
     dataset['new_value'] = dataset.apply(lambda row: np.around(np.transpose(v).dot(row.zero_mean), decimals=4), axis=1)
-    print(dataset['new_value'])
+    return dataset['new_value']
 
 
 pca(data)
