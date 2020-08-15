@@ -7,7 +7,7 @@ dp = dataprep()
 data = dataprep.create_data(x)
 
 
-def pca(dataset):
+def karhunen_loeve_transform(dataset):
     mean = 0
     covariance = 0
 
@@ -47,5 +47,4 @@ def pca(dataset):
     dataset['new_value'] = dataset.apply(lambda row: np.around(np.transpose(v).dot(row.zero_mean), decimals=4), axis=1)
     return dataset['new_value']
 
-
-pca(data)
+karhunen_loeve_transform(data)
