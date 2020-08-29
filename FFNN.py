@@ -28,10 +28,12 @@ class feed_forward_neurel_network:
     def back_prop_output_layer(self, o_out, y, h_out):
         delta_error = o_out - y
         oo_out = 1-o_out
-
         delta_o_out = o_out*oo_out
-        delta_error_out = delta_error.dot(delta_o_out)
-        return delta_error_out.dot(h_out)
+        delta_error_out = delta_error*delta_o_out
+        h_out_tran = h_out.T
+        delta_weight = h_out_tran.dot(delta_error_out)
+        dw_2 = delta_weight/len(o_out)
+        return dw_2
 
     def forward_propogation(self, X, W1, W2, B1, B2):
         h_net = X.dot(W1)
