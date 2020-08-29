@@ -16,6 +16,7 @@ class feed_forward_neurel_network:
         for i in range(iterations):
             h_net, h_out, o_net, o_out = self.forward_propogation(X, W1, W2, B1, B2)
             delta_W2 = self.back_prop_output_layer(o_out, y, h_out)
+            delta_W1 = self.back_prop_hidden_layer(o_out, y, h_out, W2)
 
     def sigmoid(self, x):
         return 1 / (1 + math.exp(-x))
@@ -23,8 +24,12 @@ class feed_forward_neurel_network:
     def cost(self, ):
         pass
 
-    def back_prop_hidden_layer(self, ):
-        pass
+    def back_prop_hidden_layer(self, o_out, y, h_out, W2):
+        delta_error = o_out - y
+        delta_o_out = o_out*(1-o_out)
+        delta_error_net = delta_error*delta_o_out
+
+        return
 
     def back_prop_output_layer(self, o_out, y, h_out):
         delta_error = o_out - y
