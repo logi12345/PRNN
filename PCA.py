@@ -4,7 +4,7 @@ from numpy import linalg as LA
 
 x = [[-1.3536, 0.4098], [0.0, 0.0], [2.2353, 0.0621], [-0.8817, -0.4719]]
 dp = dataprep()
-data = dataprep.create_data(x)
+data = dataprep.create_dataframe(x)
 
 
 def karhunen_loeve_transform(dataset):

@@ -1,6 +1,7 @@
 import numpy as np
 from pandas import DataFrame
 import matplotlib.pyplot as plt
+from sklearn import datasets, preprocessing
 
 
 class DataProcessor:
@@ -8,9 +9,28 @@ class DataProcessor:
         return
 
     @staticmethod
-    def create_data(x, classes=None):
+    def create_dataframe(x, classes=None):
         de = {'input': x, 'classes': classes} if classes else {'input': x}
         return DataFrame(data=de)
+
+    @staticmethod
+    def custom_encoder(labels):
+        new_labels = np.transpose(np.array([labels]))
+        c_labels = []
+        for label in new_labels:
+            if label[0] == 1:
+                c = np.append(label, 0)
+            else:
+                c = np.append(label, 1)
+            c_labels.append(c)
+        return np.array(c_labels)
+
+    def create_2d_moon_shape_data(self):
+        np.random.seed(0)
+        feature_set, labels = datasets.make_moons(300, noise=0.20)
+        labels = self.custom_encoder(labels)
+
+        return feature_set, labels
 
     @staticmethod
     def transform_into_transposed_vector(x):

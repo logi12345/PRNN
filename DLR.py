@@ -26,7 +26,7 @@ def delta_learning_rule(data, a, lr, co):
 
 
 coord = [[0, 0], [1, 0], [2, 1], [0, 1], [1, 2]]
-d = dp.create_data(coord, [1, 1, 1, 0, 0])
+d = dp.create_dataframe(coord, [1, 1, 1, 0, 0])
 at = [-1.5, 5, -1]
 
 delta_learning_rule(d, at, 1, coord)
